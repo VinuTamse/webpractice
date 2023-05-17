@@ -15,13 +15,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col">
+
                 <div class="mb-3">
                     <label for="fname" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="fname">
+                    <input type="text" class="form-control" id="fname" required>
                 </div>
                 <div class="mb-3">
                     <label for="lname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="lname">
+                    <input type="text" class="form-control" id="lname" required>
                 </div>
                 <label>Gender</label>
                 <div class="form-check form-switch">
@@ -306,7 +307,8 @@
                     <option value="United Arab Emirates">United Arab Emirates</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
-                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands
+                    </option>
                     <option value="Uruguay">Uruguay</option>
                     <option value="Uzbekistan">Uzbekistan</option>
                     <option value="Vanuatu">Vanuatu</option>
@@ -322,37 +324,40 @@
                     <option value="Zimbabwe">Zimbabwe</option>
                 </select>
                 <div class="mt-3">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalexp" id="sub">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalexp"
+                        id="sub">
                         Submit
-                      </button>
+                    </button>
 
-                      <div class="modal fade" id="modalexp" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalexp" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="modalLabel">Message</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalLabel">Message</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="an"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              <p id="an"></p> 
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
+
             </div>
             <div class="col">
                 <label>Type Something Here</label>
                 <div id="iap">
-                
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -360,41 +365,41 @@
 </body>
 <script>
     var host2 = document.querySelector('div#iap');
-var root2 = host2.attachShadow({mode:'open'});
-var new_ele1 = document.createElement('div');
-new_ele1.id = 'insdom';
-new_ele1.innerHTML = '<textarea style="height: 500px; width: 750px;"></textarea>'
-root2.appendChild(new_ele1);
+    var root2 = host2.attachShadow({ mode: 'open' });
+    var new_ele1 = document.createElement('div');
+    new_ele1.id = 'insdom';
+    new_ele1.innerHTML = '<textarea style="height: 500px; width: 750px;"></textarea>'
+    root2.appendChild(new_ele1);
 
 
-var submitBtn = document.getElementById('sub');
-submitBtn.addEventListener('click', ()=> {
-  
-   
-    var first_name = document.getElementById('fname').value;
-    var last_name = document.getElementById('lname').value;
-    var spanEle = document.createElement('span');
-    var ename = document.getElementById('an');
-    if (ename.children.length > 0){
-        var childs = [...ename.children];
-        for (var eles of childs){
-            eles.remove();
+    var submitBtn = document.getElementById('sub');
+    submitBtn.addEventListener('click', () => {
+
+
+        var first_name = document.getElementById('fname').value;
+        var last_name = document.getElementById('lname').value;
+        var spanEle = document.createElement('span');
+        var ename = document.getElementById('an');
+
+        if (ename.children.length > 0) {
+            var childs = [...ename.children];
+            for (var eles of childs) {
+                eles.remove();
+            }
         }
-    }
-    
-   if (first_name=="" && last_name==""){
+        if (first_name == "" && last_name == "") {
             spanEle.textContent = `Please Fill in The Details`;
             ename.append(spanEle);
-            
-      }
- else{
 
-      spanEle.textContent = `Thanks ${first_name} For Your Details`;
-      ename.append(spanEle);
-   }
-    
-    
-})
+        }
+        else {
+
+            spanEle.textContent = `Thanks ${first_name} For Your Details`;
+            ename.append(spanEle);
+        }
+
+
+    })
 </script>
 
 </html>
