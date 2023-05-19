@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+
+<body>
+    <div class="container">
+
+        <button type="button" class="btn btn-outline-success mt-5" data-bs-toggle="modal"
+            data-bs-target="#cardModal">Create Card</button>
+        <button type="button" class="btn btn-outline-danger mt-5" id="delcard" data-bs-target="#emptycards">Delete All
+            Cards</button>
+
+        <div class="modal fade" id="cardModal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cardModalLabel">Create Card</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="Title" class="form-label">Card Title</label>
+                        <input type="text" class="form-control" name="cardtitle" id="Title" />
+                        <label for="carddesc" class="form-label">Description</label>
+                        <textarea class="form-control" id="carddesc" rows="5"></textarea>
+                        <label for="cardImg" class="form-label mt-3">Image</label>
+                        <select class="form-control" type="file" id="cardImg">
+                            <option selected>Select Images</option>
+                            <option
+                                value="https://i.pinimg.com/originals/fc/74/6a/fc746adc7b19784eaff6c675f3b54fe8.jpg">
+                                Nature</option>
+                            <option
+                                value="https://c4.wallpaperflare.com/wallpaper/240/12/7/lexus-lfa-wallpaper-preview.jpg">
+                                Car</option>
+                            <option value="https://wallpaper.dog/large/20493151.jpg">Bike</option>
+
+                            <option value="https://www.youtube.com/img/desktop/yt_1200.png">Youtube</option>
+                            <option
+                                value="data:image/png;base64,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">
+                                Java</option>
+                            <option
+                                value="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png">
+                                Javascript</option>
+                            <option
+                                value="https://images.ctfassets.net/mrop88jh71hl/55rrbZfwMaURHZKAUc5oOW/9e5fe805eb03135b82e962e92169ce6d/python-programming-language.png">
+                                Python</option>
+                            <option
+                                value="https://camo.githubusercontent.com/74ed64243ba05754329bc527cd4240ebd1c087a1/68747470733a2f2f73656c656e69756d2e6465762f696d616765732f73656c656e69756d5f6c6f676f5f7371756172655f677265656e2e706e67">
+                                Selenium</option>
+                            <option
+                                value="https://repository-images.githubusercontent.com/37153337/9d0a6780-394a-11eb-9fd1-6296a684b124">
+                                React</option>
+                            <option value="https://www.cypress.io/cypress_logo_social.png">Cypress</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-success" id="create">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--In case of empty cards-->
+        <div class="modal fade" id="emptycards" tabindex="-1" aria-labelledby="cardemptyLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cardemptyLabel">No Cards</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <span>There are no cards</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Cards-->
+
+        <div class="container text-center">
+            <div class="row">
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        var createCardButton = document.getElementById('create');
+        var deleteAllCardButton = document.getElementById('delcard');
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('Date') == null) {
+                deleteAllCardButton.setAttribute("data-bs-toggle", "modal");
+            }
+            else {
+                deleteAllCardButton.removeAttribute("data-bs-toggle");
+            }
+        })
+        if (localStorage.getItem('Data') != null) {
+            displayCards();
+        }
+
+        if (localStorage.getItem('Data') != null) {
+            let lx = localStorage.getItem('Data');
+            let ly = JSON.parse(lx);
+            var listdata = ly;
+        }
+        else {
+            var listdata = [];
+        }
+
+        function Uploader(index) {
+            var ImagePlace = document.querySelector('img#' + index);
+            ImagePlace.setAttribute('src', URL.createObjectURL(event.target.files[0]));
+        }
+        //   var listdata = [];
+        function displayCards() {
+            var row = document.querySelector('div.row');
+            var localData = localStorage.getItem('Data');
+            var objData = JSON.parse(localData);
+            var rowLength = objData.length;
+
+
+            for (var i = 0; i < rowLength; i++) {
+                var DivEle = document.createElement('div');
+                DivEle.className = "col-md-3";
+                DivEle.innerHTML = `
+                <div class="card text-bg-info mt-5" style="width: 16rem;" id="c${i}">
+                    <img src="${objData[i].image}" style="width:16rem; height:200px;"class="card-img-top img-thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">${objData[i].title}</h5>
+                        <p class="card-text">${objData[i].description}</p>
+                        <button class="btn btn-outline-danger" id="${i}" onclick="deleteSingleCard(this.id)">Delete</a>
+                    </div>
+                </div>`
+
+                row.appendChild(DivEle);
+
+
+
+            }
+        }
+
+
+
+
+
+        createCardButton.addEventListener('click', createCard);
+        deleteAllCardButton.addEventListener('click', deleteAllCards);
+
+
+        function createCard() {
+            console.log('clicked create Card');
+
+            var card_title = document.getElementById('Title').value;
+            var card_desc = document.getElementById('carddesc').value;
+            var card_img = document.getElementById('cardImg').value;
+            var Obj = {
+                "title": card_title,
+                "description": card_desc,
+                "image": card_img
+            };
+            listdata.push(Obj);
+            localStorage.setItem('Data', JSON.stringify(listdata));
+            location.reload();
+
+
+        }
+
+
+        function deleteAllCards() {
+            if (localStorage.getItem('Data') != null) {
+                localStorage.clear();
+                location.reload();
+            }
+
+
+            //data-bs-target="#emptycards"
+
+
+
+        }
+
+        function deleteSingleCard(index) {
+            console.log('id is ' + index);
+            if (localStorage.getItem('Data') != null) {
+
+
+                var DataLocal = localStorage.getItem('Data');
+                var objData = JSON.parse(DataLocal);
+                var sap = [...objData];
+                sap.splice(index, 1);
+                console.log(sap);
+                var objNew = JSON.stringify(sap);
+                console.log(objNew);
+                localStorage.setItem('Data', objNew);
+                location.reload();
+
+            }
+        }
+
+
+
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
