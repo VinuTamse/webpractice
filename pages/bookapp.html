@@ -13,9 +13,86 @@
 <body>
     <div class="container">
 
+
+        <div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgEx" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="msgEx" style="color:green;"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg> Success</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Card Added
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" id="msgclose"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Delete Message-->
+
+        <div class="modal fade" id="delCardMsg" tabindex="-1" aria-labelledby="delExampleMsg" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delExampleMsg" style="color:green;"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg> Success</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Deleted Card
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="closeDelMsg"
+                            onclick="HandleReload()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete All Cards-->
+
+        <div class="modal fade" id="delAllCardMsg" tabindex="-1" aria-labelledby="delAllExampleMsg" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="delAllExampleMsg" style="color:green;"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg> Success</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Deleted All Cards
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"
+                            onclick="HandleReload()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--- <button onclick="showModal()">Show Modal</button>-->
+
+
         <button type="button" class="btn btn-outline-success mt-5" data-bs-toggle="modal"
             data-bs-target="#cardModal">Create Card</button>
-        <button type="button" class="btn btn-outline-danger mt-5" id="delcard" data-bs-target="#emptycards">Delete All
+        <button type="button" class="btn btn-outline-danger mt-5" id="delcard" data-bs-target="#emptycards">Delete
+            All
             Cards</button>
 
         <div class="modal fade" id="cardModal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
@@ -23,7 +100,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="cardModalLabel">Create Card</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="X" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <label for="Title" class="form-label">Card Title</label>
@@ -95,10 +173,39 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
     <script>
+
+
+        function showModal() {
+            var myModal = new bootstrap.Modal(document.getElementById('msgModal'));
+            myModal.show();
+        }
+
+        function showDelCardModal() {
+            var myModal = new bootstrap.Modal(document.getElementById('delCardMsg'));
+            myModal.show();
+        }
+
+        function showDelAllCardsModal() {
+            var delAllCardsModal = new bootstrap.Modal(document.getElementById('delAllCardMsg'));
+            delAllCardsModal.show();
+        }
+
+
+
+
 
         var createCardButton = document.getElementById('create');
         var deleteAllCardButton = document.getElementById('delcard');
+        var closeMsgcard = document.getElementById('msgclose');
+
+        closeMsgcard.addEventListener('click', () => {
+            location.reload();
+        })
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('Date') == null) {
                 deleteAllCardButton.setAttribute("data-bs-toggle", "modal");
@@ -120,10 +227,6 @@
             var listdata = [];
         }
 
-        function Uploader(index) {
-            var ImagePlace = document.querySelector('img#' + index);
-            ImagePlace.setAttribute('src', URL.createObjectURL(event.target.files[0]));
-        }
         //   var listdata = [];
         function displayCards() {
             var row = document.querySelector('div.row');
@@ -173,7 +276,11 @@
             };
             listdata.push(Obj);
             localStorage.setItem('Data', JSON.stringify(listdata));
-            location.reload();
+            document.getElementById('X').click();
+            showModal();
+
+
+
 
 
         }
@@ -182,7 +289,8 @@
         function deleteAllCards() {
             if (localStorage.getItem('Data') != null) {
                 localStorage.clear();
-                location.reload();
+                showDelAllCardsModal();
+            
             }
 
 
@@ -205,10 +313,22 @@
                 var objNew = JSON.stringify(sap);
                 console.log(objNew);
                 localStorage.setItem('Data', objNew);
-                location.reload();
+                showDelCardModal();
+
 
             }
+
         }
+
+        function HandleReload() {
+            location.reload();
+        }
+
+
+
+
+
+
 
 
 
@@ -216,9 +336,8 @@
     </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>
